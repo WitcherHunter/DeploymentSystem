@@ -1,0 +1,590 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 2,
+    "identityHash": "a88ad0dccd5c21f9e9eba5c0f41679f8",
+    "entities": [
+      {
+        "tableName": "User",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`user_id` INTEGER NOT NULL, `user_name` TEXT NOT NULL, `name` TEXT, `roleid` INTEGER, `rolename` TEXT, `roledescription` TEXT, `roleroleType` TEXT, `companyid` INTEGER, `companycompanyName` TEXT, `companycompanyLevel` TEXT, `companydescription` TEXT, `companyparentId` TEXT, `companycompCode` TEXT, `companycontact` TEXT, `companylatitude` REAL, `companylongitude` REAL, `companyaddress` TEXT, `companytelephone` TEXT, `companyemail` TEXT, `companysitesite_id` INTEGER, `companysitesiteLevelDescription` TEXT, `companysitesitePersonNumMax` INTEGER, `companysitesitePersonNumMin` INTEGER, `companysitesiteClassNum` INTEGER, PRIMARY KEY(`user_id`, `user_name`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "user_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "userName",
+            "columnName": "user_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "role.id",
+            "columnName": "roleid",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "role.name",
+            "columnName": "rolename",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "role.description",
+            "columnName": "roledescription",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "role.roleType",
+            "columnName": "roleroleType",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "company.id",
+            "columnName": "companyid",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "company.companyName",
+            "columnName": "companycompanyName",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "company.companyLevel",
+            "columnName": "companycompanyLevel",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "company.description",
+            "columnName": "companydescription",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "company.parentId",
+            "columnName": "companyparentId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "company.compCode",
+            "columnName": "companycompCode",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "company.contact",
+            "columnName": "companycontact",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "company.latitude",
+            "columnName": "companylatitude",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "company.longitude",
+            "columnName": "companylongitude",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "company.address",
+            "columnName": "companyaddress",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "company.telephone",
+            "columnName": "companytelephone",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "company.email",
+            "columnName": "companyemail",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "company.site.id",
+            "columnName": "companysitesite_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "company.site.siteLevelDescription",
+            "columnName": "companysitesiteLevelDescription",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "company.site.sitePersonNumMax",
+            "columnName": "companysitesitePersonNumMax",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "company.site.sitePersonNumMin",
+            "columnName": "companysitesitePersonNumMin",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "company.site.siteClassNum",
+            "columnName": "companysitesiteClassNum",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "user_id",
+            "user_name"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Company",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `companyName` TEXT, `companyLevel` TEXT, `description` TEXT, `parentId` TEXT, `compCode` TEXT, `contact` TEXT, `latitude` REAL NOT NULL, `longitude` REAL NOT NULL, `address` TEXT, `telephone` TEXT, `email` TEXT, `sitesite_id` INTEGER, `sitesiteLevelDescription` TEXT, `sitesitePersonNumMax` INTEGER, `sitesitePersonNumMin` INTEGER, `sitesiteClassNum` INTEGER, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "companyName",
+            "columnName": "companyName",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "companyLevel",
+            "columnName": "companyLevel",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "parentId",
+            "columnName": "parentId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "compCode",
+            "columnName": "compCode",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "contact",
+            "columnName": "contact",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "latitude",
+            "columnName": "latitude",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "longitude",
+            "columnName": "longitude",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "address",
+            "columnName": "address",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "telephone",
+            "columnName": "telephone",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "email",
+            "columnName": "email",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "site.id",
+            "columnName": "sitesite_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "site.siteLevelDescription",
+            "columnName": "sitesiteLevelDescription",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "site.sitePersonNumMax",
+            "columnName": "sitesitePersonNumMax",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "site.sitePersonNumMin",
+            "columnName": "sitesitePersonNumMin",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "site.siteClassNum",
+            "columnName": "sitesiteClassNum",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Role",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `name` TEXT, `description` TEXT, `roleType` TEXT, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "roleType",
+            "columnName": "roleType",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Site",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`site_id` INTEGER NOT NULL, `siteLevelDescription` TEXT, `sitePersonNumMax` INTEGER NOT NULL, `sitePersonNumMin` INTEGER NOT NULL, `siteClassNum` INTEGER NOT NULL, PRIMARY KEY(`site_id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "site_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "siteLevelDescription",
+            "columnName": "siteLevelDescription",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sitePersonNumMax",
+            "columnName": "sitePersonNumMax",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sitePersonNumMin",
+            "columnName": "sitePersonNumMin",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "siteClassNum",
+            "columnName": "siteClassNum",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "site_id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "NetConfig",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `host` TEXT, `port` TEXT, `name` TEXT, `distinguish` TEXT, `type` TEXT, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "host",
+            "columnName": "host",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "port",
+            "columnName": "port",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "distinguish",
+            "columnName": "distinguish",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Login",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `token` TEXT, `user_id` INTEGER, `user_name` TEXT, `name` TEXT, `roleid` INTEGER, `rolename` TEXT, `roledescription` TEXT, `roleroleType` TEXT, `companyid` INTEGER, `companycompanyName` TEXT, `companycompanyLevel` TEXT, `companydescription` TEXT, `companyparentId` TEXT, `companycompCode` TEXT, `companycontact` TEXT, `companylatitude` REAL, `companylongitude` REAL, `companyaddress` TEXT, `companytelephone` TEXT, `companyemail` TEXT, `companysitesite_id` INTEGER, `companysitesiteLevelDescription` TEXT, `companysitesitePersonNumMax` INTEGER, `companysitesitePersonNumMin` INTEGER, `companysitesiteClassNum` INTEGER)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "token",
+            "columnName": "token",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "user.id",
+            "columnName": "user_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "user.userName",
+            "columnName": "user_name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "user.name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "user.role.id",
+            "columnName": "roleid",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "user.role.name",
+            "columnName": "rolename",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "user.role.description",
+            "columnName": "roledescription",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "user.role.roleType",
+            "columnName": "roleroleType",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "user.company.id",
+            "columnName": "companyid",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "user.company.companyName",
+            "columnName": "companycompanyName",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "user.company.companyLevel",
+            "columnName": "companycompanyLevel",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "user.company.description",
+            "columnName": "companydescription",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "user.company.parentId",
+            "columnName": "companyparentId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "user.company.compCode",
+            "columnName": "companycompCode",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "user.company.contact",
+            "columnName": "companycontact",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "user.company.latitude",
+            "columnName": "companylatitude",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "user.company.longitude",
+            "columnName": "companylongitude",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "user.company.address",
+            "columnName": "companyaddress",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "user.company.telephone",
+            "columnName": "companytelephone",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "user.company.email",
+            "columnName": "companyemail",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "user.company.site.id",
+            "columnName": "companysitesite_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "user.company.site.siteLevelDescription",
+            "columnName": "companysitesiteLevelDescription",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "user.company.site.sitePersonNumMax",
+            "columnName": "companysitesitePersonNumMax",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "user.company.site.sitePersonNumMin",
+            "columnName": "companysitesitePersonNumMin",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "user.company.site.siteClassNum",
+            "columnName": "companysitesiteClassNum",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"a88ad0dccd5c21f9e9eba5c0f41679f8\")"
+    ]
+  }
+}
