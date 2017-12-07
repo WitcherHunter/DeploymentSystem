@@ -2,7 +2,11 @@ package com.yeejoin.deloymentsystem.activity;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.yeejoin.deloymentsystem.MyApplication;
 import com.yeejoin.deloymentsystem.R;
@@ -13,12 +17,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-/**
+ /**
  * Created by maodou on 2017/12/4.
  * 登录界面
  */
 
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends AppCompatActivity{
     @BindView(R.id.et_account)
     EditText mEtAccount;
     @BindView(R.id.et_password)
@@ -33,11 +37,11 @@ public class LoginActivity extends BaseActivity {
             viewModel.login(username, password)
                     .observe(LoginActivity.this, login -> {
                         if (login != null && login.token != null){
-                            showToast("登录成功");
+                            Toast.makeText(getApplicationContext(),"登录成功",Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(LoginActivity.this, MainActivity.class));
                             finish();
                         } else
-                            showToast("登录失败");
+                            Toast.makeText(getApplicationContext(),"登录失败",Toast.LENGTH_SHORT).show();
                     });
         }
     }
@@ -45,11 +49,16 @@ public class LoginActivity extends BaseActivity {
     private LoginViewModel viewModel;
 
     @Override
-    protected int getResourceId() {
-        return R.layout.activity_login;
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+        ButterKnife.bind(this);
+
+        System.out.println("LoginActivity: " + isTaskRoot());
+
+        init();
     }
 
-    @Override
     protected void init() {
         viewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
 
@@ -57,10 +66,5 @@ public class LoginActivity extends BaseActivity {
            if (login != null && login.user != null)
                mEtAccount.setText(login.user.userName);
         });
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
     }
 }

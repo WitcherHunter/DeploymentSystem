@@ -17,6 +17,10 @@ import io.reactivex.Flowable;
 
 public abstract class DataSource {
 
+    protected LiveData<Boolean> tokenValid(String token){
+        return null;
+    }
+
     /**
      * 获取网络配置
      */

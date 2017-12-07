@@ -60,4 +60,8 @@ public class DataRepository {
     public LiveData<Login> getLastLogin(){
         return mLocalDataSource.getLastLogin();
     }
+
+    public LiveData<Boolean> tokenValid(String token){
+        return mRemoteDataSource.tokenValid(token);
+    }
 }

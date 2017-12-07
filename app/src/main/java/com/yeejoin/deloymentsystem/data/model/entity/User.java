@@ -26,4 +26,6 @@ public class User {
     public Company company;
 
     public String name;
+
+    public String mobile;
 }

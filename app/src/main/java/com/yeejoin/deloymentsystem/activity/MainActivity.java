@@ -1,14 +1,14 @@
 package com.yeejoin.deloymentsystem.activity;
 
 import android.graphics.Color;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.KeyEvent;
 
-import com.yeejoin.deloymentsystem.MyApplication;
 import com.yeejoin.deloymentsystem.R;
 import com.yeejoin.deloymentsystem.base.BaseActivity;
+import com.yeejoin.deloymentsystem.fragment.PersonalFragment;
 import com.yeejoin.deloymentsystem.fragment.TestFragment;
 
 import java.util.ArrayList;
@@ -31,27 +31,35 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void init() {
-        FragmentPagerAdapter adapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
+        mViewPager.setOffscreenPageLimit(4);
+        mViewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
-                return new TestFragment();
+                switch (position) {
+                    case 0:
+                    case 1:
+                    case 2:
+                        return new TestFragment();
+                    case 3:
+                        return new PersonalFragment();
+                    default:
+                        throw new IllegalStateException("Illegal position: " + position);
+                }
             }
 
             @Override
             public int getCount() {
                 return 4;
             }
-        };
-        mViewPager.setOffscreenPageLimit(4);
-        mViewPager.setAdapter(adapter);
+        });
         final ArrayList<NavigationTabBar.Model> models = new ArrayList<>();
         models.add(
                 new NavigationTabBar.Model.Builder(
                         getResources().getDrawable(R.drawable.dh_01),
                         Color.parseColor("#df5a55"))
-                .selectedIcon(getResources().getDrawable(R.drawable.dh_01_01))
-                .title(titles[0])
-                .build()
+                        .selectedIcon(getResources().getDrawable(R.drawable.dh_01_01))
+                        .title(titles[0])
+                        .build()
         );
         models.add(
                 new NavigationTabBar.Model.Builder(
@@ -79,5 +87,14 @@ public class MainActivity extends BaseActivity {
         );
         mTabBar.setModels(models);
         mTabBar.setViewPager(mViewPager);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            moveTaskToBack(false);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

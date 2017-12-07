@@ -15,4 +15,9 @@ public interface APISettings {
      * 网络配置
      */
     String NetConfig = "location/hosts";
+
+    /**
+     * token验证
+     */
+    String TokenValid = "system/tokenHeartbeatMonitor/{authToken}";
 }

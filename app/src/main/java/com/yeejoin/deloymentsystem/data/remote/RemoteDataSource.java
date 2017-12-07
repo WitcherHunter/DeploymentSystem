@@ -6,17 +6,19 @@ import android.util.Log;
 
 import com.yeejoin.deloymentsystem.AppExecutors;
 import com.yeejoin.deloymentsystem.MyApplication;
-import com.yeejoin.deloymentsystem.base.BaseNetworkService;
 import com.yeejoin.deloymentsystem.base.RetrofitFactory;
 import com.yeejoin.deloymentsystem.data.DataSource;
 import com.yeejoin.deloymentsystem.data.local.db.AppDatabase;
 import com.yeejoin.deloymentsystem.data.model.DataListResult;
 import com.yeejoin.deloymentsystem.data.model.entity.Login;
 import com.yeejoin.deloymentsystem.data.model.entity.NetConfig;
+import com.yeejoin.deloymentsystem.data.model.entity.TokenValid;
 import com.yeejoin.deloymentsystem.request.LoginRequest;
+import com.yeejoin.deloymentsystem.utils.NetworkConstant;
 
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -47,10 +49,37 @@ public class RemoteDataSource extends DataSource {
     }
 
     @Override
+    protected LiveData<Boolean> tokenValid(String token) {
+        final MutableLiveData<Boolean> valid = new MutableLiveData<>();
+
+        RetrofitFactory.provideService(false,NetworkConstant.SafeBaseUrl)
+                .tokenValid(token)
+                .enqueue(new Callback<TokenValid>() {
+                    @Override
+                    public void onResponse(Call<TokenValid> call, Response<TokenValid> response) {
+                        if (response.isSuccessful()){
+                            if (response.body().result.equals("TOKEN_VALID_SUCCESS"))
+                                valid.setValue(true);
+                            else
+                                valid.setValue(false);
+                        } else
+                            valid.setValue(false);
+                    }
+
+                    @Override
+                    public void onFailure(Call<TokenValid> call, Throwable t) {
+                        valid.setValue(false);
+                    }
+                });
+
+        return valid;
+    }
+
+    @Override
     public LiveData<List<NetConfig>> getNetConfigs() {
         final MutableLiveData<List<NetConfig>> configs = new MutableLiveData<>();
-        RetrofitFactory.getRetrofitClient("http://172.16.11.15:8000/")
-                .create(BaseNetworkService.class)
+
+        RetrofitFactory.provideService(false,NetworkConstant.ConfigBaseUrl)
                 .getNetConfig()
                 .enqueue(new Callback<DataListResult<List<NetConfig>>>() {
                     @Override
@@ -76,8 +105,7 @@ public class RemoteDataSource extends DataSource {
         request.userName = username;
         request.password = password;
 
-        RetrofitFactory.getRetrofitClient("http://172.16.11.15:8800")
-                .create(BaseNetworkService.class)
+        RetrofitFactory.provideService(false, NetworkConstant.SafeBaseUrl)
                 .login(request)
                 .enqueue(new Callback<Login>() {
                     @Override
@@ -96,6 +124,7 @@ public class RemoteDataSource extends DataSource {
                         System.out.println(t.getMessage());
                     }
                 });
+
         return loginLiveData;
     }
 }

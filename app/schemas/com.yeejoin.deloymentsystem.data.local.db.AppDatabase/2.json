@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 2,
-    "identityHash": "a88ad0dccd5c21f9e9eba5c0f41679f8",
+    "identityHash": "d5759e840efaa0910db824dd3677ee68",
     "entities": [
       {
         "tableName": "User",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`user_id` INTEGER NOT NULL, `user_name` TEXT NOT NULL, `name` TEXT, `roleid` INTEGER, `rolename` TEXT, `roledescription` TEXT, `roleroleType` TEXT, `companyid` INTEGER, `companycompanyName` TEXT, `companycompanyLevel` TEXT, `companydescription` TEXT, `companyparentId` TEXT, `companycompCode` TEXT, `companycontact` TEXT, `companylatitude` REAL, `companylongitude` REAL, `companyaddress` TEXT, `companytelephone` TEXT, `companyemail` TEXT, `companysitesite_id` INTEGER, `companysitesiteLevelDescription` TEXT, `companysitesitePersonNumMax` INTEGER, `companysitesitePersonNumMin` INTEGER, `companysitesiteClassNum` INTEGER, PRIMARY KEY(`user_id`, `user_name`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`user_id` INTEGER NOT NULL, `user_name` TEXT NOT NULL, `name` TEXT, `mobile` TEXT, `roleid` INTEGER, `rolename` TEXT, `roledescription` TEXT, `roleroleType` TEXT, `companyid` INTEGER, `companycompanyName` TEXT, `companycompanyLevel` TEXT, `companydescription` TEXT, `companyparentId` TEXT, `companycompCode` TEXT, `companycontact` TEXT, `companylatitude` REAL, `companylongitude` REAL, `companyaddress` TEXT, `companytelephone` TEXT, `companyemail` TEXT, `companysitesite_id` INTEGER, `companysitesiteLevelDescription` TEXT, `companysitesitePersonNumMax` INTEGER, `companysitesitePersonNumMin` INTEGER, `companysitesiteClassNum` INTEGER, PRIMARY KEY(`user_id`, `user_name`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -23,6 +23,12 @@
           {
             "fieldPath": "name",
             "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mobile",
+            "columnName": "mobile",
             "affinity": "TEXT",
             "notNull": false
           },
@@ -413,7 +419,7 @@
       },
       {
         "tableName": "Login",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `token` TEXT, `user_id` INTEGER, `user_name` TEXT, `name` TEXT, `roleid` INTEGER, `rolename` TEXT, `roledescription` TEXT, `roleroleType` TEXT, `companyid` INTEGER, `companycompanyName` TEXT, `companycompanyLevel` TEXT, `companydescription` TEXT, `companyparentId` TEXT, `companycompCode` TEXT, `companycontact` TEXT, `companylatitude` REAL, `companylongitude` REAL, `companyaddress` TEXT, `companytelephone` TEXT, `companyemail` TEXT, `companysitesite_id` INTEGER, `companysitesiteLevelDescription` TEXT, `companysitesitePersonNumMax` INTEGER, `companysitesitePersonNumMin` INTEGER, `companysitesiteClassNum` INTEGER)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `token` TEXT, `user_id` INTEGER, `user_name` TEXT, `name` TEXT, `mobile` TEXT, `roleid` INTEGER, `rolename` TEXT, `roledescription` TEXT, `roleroleType` TEXT, `companyid` INTEGER, `companycompanyName` TEXT, `companycompanyLevel` TEXT, `companydescription` TEXT, `companyparentId` TEXT, `companycompCode` TEXT, `companycontact` TEXT, `companylatitude` REAL, `companylongitude` REAL, `companyaddress` TEXT, `companytelephone` TEXT, `companyemail` TEXT, `companysitesite_id` INTEGER, `companysitesiteLevelDescription` TEXT, `companysitesitePersonNumMax` INTEGER, `companysitesitePersonNumMin` INTEGER, `companysitesiteClassNum` INTEGER)",
         "fields": [
           {
             "fieldPath": "id",
@@ -442,6 +448,12 @@
           {
             "fieldPath": "user.name",
             "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "user.mobile",
+            "columnName": "mobile",
             "affinity": "TEXT",
             "notNull": false
           },
@@ -584,7 +596,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"a88ad0dccd5c21f9e9eba5c0f41679f8\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"d5759e840efaa0910db824dd3677ee68\")"
     ]
   }
 }
