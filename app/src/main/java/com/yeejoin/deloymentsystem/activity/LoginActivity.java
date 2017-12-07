@@ -1,8 +1,10 @@
 package com.yeejoin.deloymentsystem.activity;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.widget.EditText;
 
+import com.yeejoin.deloymentsystem.MyApplication;
 import com.yeejoin.deloymentsystem.R;
 import com.yeejoin.deloymentsystem.base.BaseActivity;
 import com.yeejoin.deloymentsystem.viewmodel.LoginViewModel;
@@ -32,6 +34,8 @@ public class LoginActivity extends BaseActivity {
                     .observe(LoginActivity.this, login -> {
                         if (login != null && login.token != null){
                             showToast("登录成功");
+                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                            finish();
                         } else
                             showToast("登录失败");
                     });
@@ -47,7 +51,6 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected void init() {
-        ButterKnife.bind(this);
         viewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
 
         viewModel.getLastLogin().observe(this,login -> {

@@ -1,5 +1,8 @@
 package com.yeejoin.deloymentsystem.base;
 
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -16,5 +19,23 @@ public class RetrofitFactory {
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
+    }
+
+    public static OkHttpClient provideClient(){
+        return new OkHttpClient.Builder()
+                .addInterceptor(new MyInterceptor())
+                .writeTimeout(5000, TimeUnit.MILLISECONDS)
+                .readTimeout(5000,TimeUnit.MILLISECONDS)
+                .build();
+    }
+
+    public static BaseNetworkService provideService(boolean hasToken, String baseUrl){
+        Retrofit.Builder builder = new Retrofit.Builder();
+        builder.baseUrl(baseUrl);
+        builder.addConverterFactory(GsonConverterFactory.create());
+        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+        if (hasToken)
+            builder.client(provideClient());
+        return builder.build().create(BaseNetworkService.class);
     }
 }

@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import butterknife.ButterKnife;
+
 /**
  * Created by maodou on 2017/12/4.
  */
@@ -22,6 +24,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getResourceId());
+        ButterKnife.bind(this);
         windowManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
 
         init();

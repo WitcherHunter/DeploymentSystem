@@ -86,6 +86,7 @@ public class RemoteDataSource extends DataSource {
                             Login login = response.body();
                             executors.diskIO().execute(() -> database.loginDao().deleteAll());
                             executors.diskIO().execute(() -> database.loginDao().insertLogin(login));
+                            MyApplication.getInstance().setLoginInfo(login);
                             loginLiveData.setValue(response.body());
                         }
                     }
