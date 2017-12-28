@@ -32,13 +32,6 @@ public class MyApplication extends Application {
                 .getLastLogin().getValue();
     }
 
-    public static List<NetConfig> initNetConfigs(){
-        List<NetConfig> configs = new ArrayList<>();
-        configs.add(new NetConfig());
-
-        return configs;
-    }
-
     public Login getLoginInfo() {
         return loginInfo;
     }
