@@ -1,7 +1,7 @@
 package com.yeejoin.deloymentsystem.data.model;
 
 /**
- * Created by maodou on 2017/12/5.
+ * Created by maodou on 2017/12/28.
  * 列表格式返回数据顶层结构
  */
 

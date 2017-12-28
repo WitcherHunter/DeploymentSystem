@@ -8,7 +8,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * Created by maodou on 2017/12/4.
+ * Created by maodou on 2017/12/28.
  */
 
 public class RetrofitFactory {
@@ -23,7 +23,7 @@ public class RetrofitFactory {
 
     public static OkHttpClient provideClient(){
         return new OkHttpClient.Builder()
-                .addInterceptor(new MyInterceptor())
+                .addInterceptor(new TokenInterceptor())
                 .writeTimeout(5000, TimeUnit.MILLISECONDS)
                 .readTimeout(5000,TimeUnit.MILLISECONDS)
                 .build();

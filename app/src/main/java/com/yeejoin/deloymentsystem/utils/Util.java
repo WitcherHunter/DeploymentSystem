@@ -9,7 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 
 /**
- * Created by maodou on 2017/12/5.
+ * Created by maodou on 2017/12/28.
  */
 
 public class Util {
@@ -19,13 +19,18 @@ public class Util {
                     .getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
             if (mNetworkInfo != null) {
-                return mNetworkInfo.isAvailable();
+                return true;
             }
         }
         return false;
     }
 
-    public static void showSnackbar(View parentView, String msg) {
+    /**
+     * 显示SnackBar
+     * @param parentView 底层view
+     * @param msg 消息内容
+     */
+    public static void showSnackbar(View parentView, CharSequence msg) {
         if (TextUtils.isEmpty(msg)) {
             return;
         }

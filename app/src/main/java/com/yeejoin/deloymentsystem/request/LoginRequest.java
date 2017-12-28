@@ -1,7 +1,7 @@
 package com.yeejoin.deloymentsystem.request;
 
 /**
- * Created by maodou on 2017/12/5.
+ * Created by maodou on 2017/12/28.
  */
 
 public class LoginRequest {

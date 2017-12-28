@@ -11,12 +11,17 @@ import java.util.List;
 import io.reactivex.Flowable;
 
 /**
- * Created by maodou on 2017/12/5.
+ * Created by maodou on 2017/12/28.
  * 数据源基类
  */
 
 public abstract class DataSource {
 
+    /**
+     * 验证token
+     * @param token
+     * @return
+     */
     protected LiveData<Boolean> tokenValid(String token){
         return null;
     }

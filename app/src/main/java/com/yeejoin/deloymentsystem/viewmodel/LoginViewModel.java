@@ -8,9 +8,14 @@ import android.support.annotation.NonNull;
 import com.yeejoin.deloymentsystem.data.DataRepository;
 import com.yeejoin.deloymentsystem.data.Injection;
 import com.yeejoin.deloymentsystem.data.model.entity.Login;
+import com.yeejoin.deloymentsystem.data.model.entity.NetConfig;
+
+import java.util.List;
 
 /**
- * Created by maodou on 2017/12/6.
+ * Created by maodou on 2017/12/28.
+ *
+ * 登录ViewModel
  */
 
 public class LoginViewModel extends AndroidViewModel {
@@ -27,5 +32,9 @@ public class LoginViewModel extends AndroidViewModel {
 
     public LiveData<Login> getLastLogin(){
         return repository.getLastLogin();
+    }
+
+    public LiveData<List<NetConfig>> getNetConfig(){
+        return repository.getNetConfigs();
     }
 }

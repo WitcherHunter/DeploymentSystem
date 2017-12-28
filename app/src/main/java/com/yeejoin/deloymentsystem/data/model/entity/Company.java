@@ -3,12 +3,14 @@ package com.yeejoin.deloymentsystem.data.model.entity;
 import android.arch.persistence.room.Embedded;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.RoomWarnings;
 
 /**
- * Created by maodou on 2017/12/4.
+ * Created by maodou on 2017/12/28.
  * 单位Entity
  */
 
+@SuppressWarnings(RoomWarnings.PRIMARY_KEY_FROM_EMBEDDED_IS_DROPPED)
 @Entity
 public class Company {
     @PrimaryKey

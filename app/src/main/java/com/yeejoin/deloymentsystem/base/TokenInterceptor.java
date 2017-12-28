@@ -10,10 +10,10 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 /**
- * Created by maodou on 2017/12/7.
+ * Created by maodou on 2017/12/28.
  */
 
-public class MyInterceptor implements Interceptor {
+public class TokenInterceptor implements Interceptor {
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request original = chain.request();

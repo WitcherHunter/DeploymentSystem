@@ -8,7 +8,9 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 /**
- * Created by maodou on 2017/12/5.
+ * Created by maodou on 2017/12/28.
+ *
+ * Executor
  */
 
 public class AppExecutors {
@@ -30,14 +32,26 @@ public class AppExecutors {
                 new MainThreadExecutor());
     }
 
+    /**
+     * 磁盘读写
+     * @return
+     */
     public Executor diskIO() {
         return mDiskIO;
     }
 
+    /**
+     * 网络读写
+     * @return
+     */
     public Executor networkIO() {
         return mNetworkIO;
     }
 
+    /**
+     * 主线程
+     * @return
+     */
     public Executor mainThread() {
         return mMainThread;
     }

@@ -1,7 +1,7 @@
 package com.yeejoin.deloymentsystem.utils;
 
 /**
- * Created by maodou on 2017/12/7.
+ * Created by maodou on 2017/12/28.
  */
 
 public interface NetworkConstant {

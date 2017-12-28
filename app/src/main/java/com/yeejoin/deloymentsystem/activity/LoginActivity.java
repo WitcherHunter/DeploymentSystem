@@ -5,12 +5,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.yeejoin.deloymentsystem.MyApplication;
 import com.yeejoin.deloymentsystem.R;
 import com.yeejoin.deloymentsystem.base.BaseActivity;
+import com.yeejoin.deloymentsystem.data.model.entity.NetConfig;
+import com.yeejoin.deloymentsystem.utils.Util;
 import com.yeejoin.deloymentsystem.viewmodel.LoginViewModel;
 
 import butterknife.BindView;
@@ -18,7 +21,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
  /**
- * Created by maodou on 2017/12/4.
+ * Created by maodou on 2017/12/28.
  * 登录界面
  */
 
@@ -37,30 +40,38 @@ public class LoginActivity extends AppCompatActivity{
             viewModel.login(username, password)
                     .observe(LoginActivity.this, login -> {
                         if (login != null && login.token != null){
-                            Toast.makeText(getApplicationContext(),"登录成功",Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(LoginActivity.this, MainActivity.class));
                             finish();
                         } else
-                            Toast.makeText(getApplicationContext(),"登录失败",Toast.LENGTH_SHORT).show();
+                            Util.showSnackbar(mParentView,"登录失败");
                     });
         }
     }
 
-    private LoginViewModel viewModel;
+    private LoginViewModel viewModel = null;
+    private View mParentView = null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        mParentView = getWindow().getDecorView();
 
-        System.out.println("LoginActivity: " + isTaskRoot());
+        if (!Util.isNetworkConnected(this))
+            Util.showSnackbar(mParentView,"无网络连接");
 
         init();
     }
 
     protected void init() {
         viewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
+
+        viewModel.getNetConfig().observe(this,observer -> {
+            if (observer == null || observer.size() == 0) {
+                Util.showSnackbar(mParentView, "网络配置获取失败!");
+            }
+        });
 
         viewModel.getLastLogin().observe(this,login -> {
            if (login != null && login.user != null)

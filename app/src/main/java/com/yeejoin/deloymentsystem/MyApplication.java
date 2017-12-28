@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by maodou on 2017/12/5.
+ * Created by maodou on 2017/12/28.
  */
 
 public class MyApplication extends Application {
@@ -34,7 +34,7 @@ public class MyApplication extends Application {
                 .getLastLogin().getValue();
     }
 
-    public static List<NetConfig> generateNetConfigs(){
+    public static List<NetConfig> initNetConfigs(){
         List<NetConfig> configs = new ArrayList<>();
         configs.add(new NetConfig());
 

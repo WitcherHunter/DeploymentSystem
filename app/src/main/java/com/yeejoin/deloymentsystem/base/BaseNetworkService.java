@@ -19,7 +19,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 /**
- * Created by maodou on 2017/12/4.
+ * Created by maodou on 2017/12/28.
  */
 
 public interface BaseNetworkService {

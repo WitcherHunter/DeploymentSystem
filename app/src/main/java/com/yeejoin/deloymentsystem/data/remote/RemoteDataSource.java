@@ -24,7 +24,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * Created by maodou on 2017/12/5.
+ * Created by maodou on 2017/12/28.
  * 网络数据源
  */
 
@@ -86,6 +86,7 @@ public class RemoteDataSource extends DataSource {
                     public void onResponse(Call<DataListResult<List<NetConfig>>> call, Response<DataListResult<List<NetConfig>>> response) {
                         if (response.isSuccessful() && response.body() != null) {
                             configs.setValue(response.body().dataList);
+                            executors.diskIO().execute(() -> database.netConfigDao().insertAll(response.body().dataList));
                         }
                     }
 
@@ -117,10 +118,13 @@ public class RemoteDataSource extends DataSource {
                             MyApplication.getInstance().setLoginInfo(login);
                             loginLiveData.setValue(response.body());
                         }
+                        else
+                            loginLiveData.setValue(null);
                     }
 
                     @Override
                     public void onFailure(Call<Login> call, Throwable t) {
+                        loginLiveData.setValue(null);
                         System.out.println(t.getMessage());
                     }
                 });
